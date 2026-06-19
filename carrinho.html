@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrinho - Organize 3D</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Organize 3D">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ORGANIZE <strong>3D</strong></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="./produtos.html">PRODUTOS</a>
+        <a href="./como-funciona.html">COMO FUNCIONA</a>
+        <a href="./sobre-nos.html">SOBRE NÓS</a>
+        <a href="./minha-conta.html">MINHA CONTA</a>
+        <a href="./carrinho.html">CARRINHO</a>
+      </nav>
+    </header>
+
+    <main class="simple-page checkout-page">
+      <header class="simple-heading">
+        <p class="eyebrow">CARRINHO</p>
+        <h1>FINALIZE SEU PEDIDO</h1>
+      </header>
+
+      <section class="checkout-grid">
+        <article class="checkout-card">
+          <h2>Resumo do organizador</h2>
+          <dl class="checkout-summary">
+            <div><dt>Medidas</dt><dd id="checkoutDimensions">--</dd></div>
+            <div><dt>Grossura</dt><dd id="checkoutWall">--</dd></div>
+            <div><dt>Volume</dt><dd id="checkoutVolume">--</dd></div>
+            <div><dt>Material</dt><dd id="checkoutWeight">--</dd></div>
+            <div><dt>Compartimentos</dt><dd id="checkoutCompartments">--</dd></div>
+            <div><dt>Divisórias</dt><dd id="checkoutDividers">--</dd></div>
+          </dl>
+          <strong class="checkout-total" id="checkoutTotal">R$ --</strong>
+          <a class="text-button" href="./index.html">EDITAR CONFIGURAÇÃO</a>
+        </article>
+
+        <article class="checkout-card pix-card">
+          <h2>Pagamento Pix</h2>
+          <p id="pixSetupMessage" class="pix-message"></p>
+          <img id="pixQrCode" class="pix-qr" alt="QR Code Pix" />
+          <label>
+            <span>Pix copia e cola</span>
+            <textarea id="pixCopyPaste" readonly rows="6"></textarea>
+          </label>
+          <button class="cart-button" id="copyPixButton" type="button">COPIAR PIX</button>
+        </article>
+      </section>
+    </main>
+
+    <script src="./checkout.js"></script>
+  </body>
+</html>

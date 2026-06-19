@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Organize 3D - Configurador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.166.1/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.166.1/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Organize 3D">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>ORGANIZE <strong>3D</strong></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="./produtos.html">PRODUTOS</a>
+        <a href="./como-funciona.html">COMO FUNCIONA</a>
+        <a href="./sobre-nos.html">SOBRE NÓS</a>
+        <a href="./minha-conta.html">MINHA CONTA</a>
+        <a href="./carrinho.html">CARRINHO</a>
+      </nav>
+    </header>
+
+    <main class="product-page">
+      <section class="hero-panel" aria-label="Configurador 3D">
+        <div class="intro-copy">
+          <p class="eyebrow">CONFIGURADOR INTERATIVO</p>
+          <h1>CRIE SEU ORGANIZADOR DE GAVETA PERFEITO</h1>
+          <p>
+            Defina as medidas da gaveta, crie compartimentos sob medida e visualize o modelo em 3D antes da impressão.
+          </p>
+        </div>
+
+        <div class="viewer-wrap">
+          <canvas id="drawer-viewer" aria-label="Visualização 3D do organizador"></canvas>
+        </div>
+      </section>
+
+      <aside class="customizer" aria-label="Painel de personalização">
+        <h2>PAINEL DE PERSONALIZAÇÃO</h2>
+
+        <label>
+          <span>Largura da Gaveta (mm)</span>
+          <input id="widthInput" type="number" min="200" max="900" step="10" value="400" />
+        </label>
+
+        <label>
+          <span>Comprimento da Gaveta (mm)</span>
+          <input id="depthInput" type="number" min="200" max="900" step="10" value="300" />
+        </label>
+
+        <label>
+          <span>Altura da Gaveta (mm)</span>
+          <input id="heightInput" type="number" min="30" max="150" step="5" value="60" />
+        </label>
+
+        <label>
+          <span>Grossura das bordas (mm)</span>
+          <input id="wallThicknessInput" type="number" min="4" max="20" step="1" value="8" />
+        </label>
+
+        <div class="stepper-field">
+          <span>Compartimentos iguais</span>
+          <div class="stepper">
+            <button id="decreaseCompartments" type="button" aria-label="Diminuir compartimentos">-</button>
+            <input id="compartmentInput" type="number" min="1" max="8" step="1" value="4" />
+            <button id="increaseCompartments" type="button" aria-label="Aumentar compartimentos">+</button>
+          </div>
+        </div>
+
+        <fieldset class="mode-field">
+          <legend>Modo de divisorias</legend>
+          <div class="mode-options">
+            <button class="mode-option is-active" type="button" data-mode="equal">Divisorias iguais</button>
+            <button class="mode-option" type="button" data-mode="custom">Personalizado</button>
+          </div>
+        </fieldset>
+
+        <div class="custom-grid" id="customGridControls">
+          <label>
+            <span>Largura do compartimento (mm)</span>
+            <input id="customWidthInput" type="number" min="60" max="800" step="10" value="140" />
+          </label>
+          <label>
+            <span>Comprimento do compartimento (mm)</span>
+            <input id="customDepthInput" type="number" min="60" max="800" step="10" value="120" />
+          </label>
+          <button class="small-action" id="addCustomModule" type="button">Adicionar compartimento</button>
+          <button class="small-action secondary" id="clearCustomModules" type="button">Limpar</button>
+          <button class="small-action fill-action" id="fillRemainingSpace" type="button">Usar espaco restante</button>
+          <ul class="custom-module-list" id="customModuleList"></ul>
+        </div>
+        <p class="validation-message" id="validationMessage" aria-live="polite"></p>
+
+        <label class="highlight-field">
+          <span>Cor do destaque</span>
+          <input id="highlightColorInput" type="color" value="#7bd39a" />
+        </label>
+
+        <fieldset class="color-field">
+          <legend>Selecione a cor</legend>
+          <div class="swatches">
+            <button
+              class="swatch is-active"
+              type="button"
+              data-color="0x202321"
+              style="--swatch: #202321"
+              aria-label="Preto fosco"
+            ></button>
+            <button
+              class="swatch"
+              type="button"
+              data-color="0x9fa79f"
+              style="--swatch: #9fa79f"
+              aria-label="Cinza"
+            ></button>
+            <button
+              class="swatch"
+              type="button"
+              data-color="0xf4f2ec"
+              style="--swatch: #f4f2ec"
+              aria-label="Branco"
+            ></button>
+            <button
+              class="swatch"
+              type="button"
+              data-color="0x8aa891"
+              style="--swatch: #8aa891"
+              aria-label="Verde menta"
+            ></button>
+          </div>
+        </fieldset>
+
+        <section class="price-summary" aria-label="Resumo de preço">
+          <h3>Resumo estimado</h3>
+          <dl>
+            <div>
+              <dt>Volume</dt>
+              <dd id="volumeEstimate">--</dd>
+            </div>
+            <div>
+              <dt>Material</dt>
+              <dd id="weightEstimate">--</dd>
+            </div>
+            <div>
+              <dt>Compartimentos</dt>
+              <dd id="compartmentEstimate">--</dd>
+            </div>
+            <div>
+              <dt>Divisorias</dt>
+              <dd id="dividerEstimate">--</dd>
+            </div>
+          </dl>
+          <strong id="priceEstimate">R$ --</strong>
+        </section>
+
+        <button class="cart-button" id="cartButton" type="button">ADICIONAR AO CARRINHO</button>
+        <p class="export-status" id="exportStatus" aria-live="polite"></p>
+      </aside>
+    </main>
+
+    <dialog class="confirm-modal" id="fillRemainingModal">
+      <form method="dialog">
+        <h2>Fechar espaco restante?</h2>
+        <p>
+          O espaco livre sera transformado em compartimento proprio. Depois disso,
+          nao sera possivel adicionar ou remover compartimentos ate limpar o layout.
+        </p>
+        <div class="modal-actions">
+          <button class="small-action secondary" value="cancel" type="submit">Cancelar</button>
+          <button class="small-action" id="confirmFillRemaining" value="confirm" type="submit">Confirmar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
