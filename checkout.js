@@ -2,7 +2,7 @@
 // Conta/agencia do banco nao geram QR Pix. Use uma chave Pix cadastrada:
 // CPF/CNPJ, e-mail, telefone ou chave aleatoria.
 const PIX_CONFIG = {
-  key: "",
+  key: "feliped.marelli@gmail.com",
   merchantName: "ORGANIZE 3D",
   merchantCity: "SAO PAULO",
   description: "Organizador 3D",
